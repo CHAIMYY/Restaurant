@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des Commandes- Restaurant</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<header>
+<h1>Restaurant- Gestion des Commandes</h1>
+</header>
+<main>
+<section id="menu">
+<h2>Menu</h2>
+<div id="categories">
+<!-- Les catégories de menu seront listées ici-->
+</div>
+<div id="items">
+<!-- Les éléments du menu seront listés ici-->
+<table id="menu">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody id="menuBody">
+       
+    </tbody>
+</table>
+</div>
+</section>
+
+
+<section id="panier">
+<h2>Mon Panier</h2>
+<ul id="liste-panier">
+<!-- Les éléments du panier seront listés ici-->
+
+</ul>
+<button id="passer-commande">Passer Commande</button>
+</section>
+
+
+<section id="historique-commandes">
+<h2>Historique des Commandes</h2>
+<ul id="liste-historique">
+<!-- Les commandes passées seront listées ici-->
+</ul>
+</section>
+<section id="admin-menu">
+<h2>Gestion du Menu</h2>
+<form id="form-article">
+<input type="text" id="nom-article" placeholder="Nom de l'article"
+required>
+<input type="number" id="prix-article" placeholder="Prix de l'article"
+required>
+<input type="text" id="categorie-article" placeholder="Catégorie (ex:
+Entrée)" required>
+<button type="submit" id="create" >Ajouter Article</button>
+</form>
+</section>
+</main>
+<footer>
+<p>&copy; 2024 Restaurant- Gestion des Commandes</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
