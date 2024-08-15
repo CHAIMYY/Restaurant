@@ -135,9 +135,13 @@ let panierItems = JSON.parse(localStorage.getItem('panierItems'));
  localStorage.setItem('order', JSON.stringify(dataOrder));
  console.log(dataOrder);
 
- 
+ panierItems = [];
+ localStorage.setItem('panierItems', JSON.stringify(panierItems));
 
+ console.log("PanierItems has been emptied:", panierItems);
 } 
+
+
 
 
 
