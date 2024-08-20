@@ -54,3 +54,9 @@ class Menu implements Showdetails {
     }
 
 }
+
+// Instanciation de la classe Menu
+$menuItem = new Menu("Spaghetti Carbonara", "Classic Italian pasta dish with creamy sauce", 12.99, "Main Course");
+
+// Affichage des détails du menu
+echo $menuItem->afficherDetails();

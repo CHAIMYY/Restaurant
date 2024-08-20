@@ -1,6 +1,6 @@
 <?php
 
- class Admin extends User {
+class Client extends User {
 
     public function afficherDetails(){
 

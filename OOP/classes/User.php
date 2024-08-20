@@ -1,20 +1,20 @@
 <?php
 
 
-class User implements Showdetails {
+abstract class User implements Showdetails {
 
       protected $name;
       protected $email;
       protected $password;
-      protected $role;
+     
 
 
-      public function __construct($name,$email,$password,$role)
+      public function __construct($name,$email,$password)
       {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->role = $role;
+       
       }
 
       
@@ -29,9 +29,7 @@ class User implements Showdetails {
         return $this->password;
       }
 
-      public function getRole(){
-        return $this->role;
-      }
+     
 
 
       public function setName($name){
@@ -43,9 +41,7 @@ class User implements Showdetails {
       public function setPassword($password){
         $this->password = $password;
       }
-      public function setRole($role){
-        $this->role = $role;
-      }
+    
 
 
 
@@ -57,7 +53,7 @@ class User implements Showdetails {
 
 
 
-    public function afficherDetails(){}
+   abstract public function afficherDetails();
 
 
 }
