@@ -173,6 +173,7 @@ order.onclick = function () {
 
         panier(); // Re-render the panier to reflect the empty state
         Menu();
+        history();
     } else {
         console.log('No items in panier to place an order.');
     }

@@ -1,62 +1,47 @@
+
+
 CREATE TABLE utilisateurs (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50),
-    email VARCHAR(100) UNIQUE,
-    role ENUM('client', 'admin')
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    role ENUM('client', 'admin') DEFAULT 'client'
 );
 
 CREATE TABLE menu (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(100),
-    categorie VARCHAR(50),
-    prix DECIMAL(10, 2),
-    description TEXT
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    description TEXT,
+    prix DECIMAL(10, 2) NOT NULL,
+    categorie ENUM('entree', 'plat_principal', 'dessert', 'boisson')
 );
 
 CREATE TABLE commandes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    utilisateur_id INT,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    statut ENUM('en cours', 'livrée'),
-    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_utilisateur INT,
+    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('en_cours', 'terminee') DEFAULT 'en_cours',
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id)
 );
 
 CREATE TABLE elements_panier (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    utilisateur_id INT,
-    item_id INT,
-    quantite INT,
-    total ECIMAL(10, 2),
-    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id),
-    FOREIGN KEY (item_id) REFERENCES menu(id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_commande INT,
+    id_menu INT,
+    quantite INT NOT NULL,
+    FOREIGN KEY (id_commande) REFERENCES commandes(id),
+    FOREIGN KEY (id_menu) REFERENCES menu(id)
 );
 
 
+-- Insertion des données initiales
+INSERT INTO utilisateurs (nom, email, mot_de_passe, role)
+VALUES ('Admin', 'admin@restaurant.com', 'admin123', 'admin');
 
-INSERT INTO utilisateurs (nom, email, role) VALUES 
-('Alice', 'alice@example.com', 'client'),
-('Bob', 'bob@example.com', 'admin'),
-('Charlie', 'charlie@example.com', 'client');
-
-
-INSERT INTO menu (nom, categorie, prix, description) VALUES 
-('Margherita Pizza', 'Pizza', 8.99, 'Classic pizza with tomatoes, mozzarella, and basil.'),
-('Caesar Salad', 'Salad', 6.50, 'Fresh romaine lettuce with Caesar dressing and croutons.'),
-('Spaghetti Carbonara', 'Pasta', 12.00, 'Spaghetti with creamy sauce, pancetta, and Parmesan cheese.');
-
-
-
-INSERT INTO commandes (utilisateur_id, statut) VALUES 
-(1, 'en cours'),
-(2, 'livrée'),
-(1, 'en cours');
-
-
-INSERT INTO elements_panier (utilisateur_id, item_id, quantite, total) VALUES 
-(1, 1, 2, 17.98),  
-(1, 2, 1, 6.50),  
-(2, 3, 1, 12.00), 
-(3, 1, 3, 26.97); 
-
+INSERT INTO menu (nom, description, prix, categorie)
+VALUES ('Salade César', 'Salade avec poulet, croutons, parmesan', 7.99, 'entree'),
+       ('Burger', 'Burger de boeuf avec fromage et bacon', 12.50, 'plat_principal'),
+       ('Tarte aux pommes', 'Tarte aux pommes maison', 4.00, 'dessert'),
+       ('Coca-Cola', 'Soda de 33cl', 2.00, 'boisson');
 
 

@@ -2,7 +2,7 @@
 
 class Commande implements Showdetails {
    
-    protected $date;
+    private $date;
     private $statut;
 
     
